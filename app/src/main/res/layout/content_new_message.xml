@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="mnf.future.talk.Activity.NewMessage"
+    android:background="@drawable/grad2"
+    tools:showIn="@layout/activity_new_message">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/titleMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send New Message"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        />
+        <RelativeLayout
+            android:layout_below="@+id/titleMessage"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtSubject"
+            android:layout_width="match_parent"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"
+            android:hint="Subject"
+            android:paddingBottom="20dp"
+
+            android:textColorHint="@color/grey300"
+            android:backgroundTint="@color/grey300"
+            />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edtDate"
+                android:layout_below="@+id/edtSubject"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select Future Date"
+                android:layout_marginTop="35dp"
+                android:paddingBottom="20dp"
+
+                android:textColorHint="@color/grey300"
+                android:backgroundTint="@color/grey300"
+                />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edtMessage"
+                android:layout_below="@+id/edtDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:paddingBottom="20dp"
+                android:hint="Message to Send"
+                android:layout_marginTop="35dp"
+                android:textColorHint="@color/grey300"
+                android:backgroundTint="@color/grey300"
+                />
+            <Button
+
+                android:id="@+id/btnSend"
+                android:layout_below="@+id/edtMessage"
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:elevation="20dp"
+                android:text="Send to Future"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/btn_style"
+                android:textColor="@color/blue500"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

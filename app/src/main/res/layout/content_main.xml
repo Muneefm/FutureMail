@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/pattern"
+        android:layout_width="match_parent"
+        android:layout_height="178dp"
+        android:alpha=".3"
+        android:src="@drawable/pattern" />
+
+    <ImageView
+        android:id="@+id/profile_pic"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_below="@+id/pattern"
+        android:layout_marginTop="-75dp"
+        android:layout_centerHorizontal="true"
+        android:elevation="5dp"
+        android:src="@drawable/profile" />
+
+    <TextView
+        android:id="@+id/nameTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Joe Don"
+        android:textColor="@color/purple900"
+        android:layout_below="@+id/profile_pic"
+        android:layout_centerHorizontal="true"
+        android:textSize="50dp"
+        />
+
+    <TextView
+        android:id="@+id/mailTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="thefuturejoe@gmail.com"
+        android:layout_below="@+id/nameTv"
+        android:layout_centerHorizontal="true"
+        android:textSize="15dp"
+        />
+    <View
+        android:id="@+id/divider_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/mailTv"
+        android:layout_marginTop="40dp"
+        android:background="@color/grey65"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="40dp"
+    android:layout_below="@+id/divider_view"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardViewOne"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_width="140dp"
+            card_view:cardBackgroundColor="@color/purpleA700"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="80dp"
+            card_view:cardCornerRadius="4dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/toSendTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To send"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="3dp"
+                    android:textColor="@android:color/white"
+                    />
+            <TextView
+                android:id="@+id/info_text"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="10"
+                android:layout_above="@+id/toSendTv"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardViewTwo"
+            android:layout_gravity="center"
+            android:layout_width="140dp"
+            card_view:cardBackgroundColor="@color/blue500"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@android:color/white"
+            android:text="10"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_height="80dp"
+            card_view:cardCornerRadius="4dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/info_text_two"
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="0"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_above="@+id/recieveTv"
+                android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/recieveTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recieved"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="3dp"
+                    android:textColor="@android:color/white"
+                    />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+
+        android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardViewThree"
+        android:layout_gravity="center"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:elevation="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/border"
+        android:textColor="@android:color/white"
+        android:text="10"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        card_view:cardCornerRadius="4dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add New"
+                android:textColor="@color/blue500"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardViewFour"
+            android:layout_gravity="center"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="0dp"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/border"
+            android:text="10"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            card_view:cardCornerRadius="4dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/border"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Message"
+                    android:textColor="@color/blue500"
+                    android:layout_centerInParent="true"
+                    />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</LinearLayout>
+
+</RelativeLayout>
+</ScrollView>
