@@ -26,7 +26,7 @@
         android:id="@+id/titleTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign in to continue"
+        android:text="Sign up to continue"
         android:layout_below="@+id/titleOne"
         android:textColor="@android:color/white"
         android:layout_marginTop="8dp"
@@ -71,7 +71,7 @@
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
             android:elevation="20dp"
-            android:text="Sign In"
+            android:text="Sign up"
 
             android:background="@drawable/btn_style"
             android:textColor="@color/blue500"
@@ -146,7 +146,7 @@
                 android:textSize="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account?"
+                android:text="Already have an account?   "
                 />
             <TextView
                 android:id="@+id/signup_tv"
@@ -155,7 +155,7 @@
                 android:textSize="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="   SIGN UP"
+                android:text="SIGN IN"
                 />
         </RelativeLayout>
     </RelativeLayout>

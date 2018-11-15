@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "396958642376",
+    "firebase_url": "https://mail-future-8616b.firebaseio.com",
+    "project_id": "mail-future-8616b",
+    "storage_bucket": "mail-future-8616b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396958642376:android:5401907c41abaa2a",
+        "android_client_info": {
+          "package_name": "mnf.mail.future"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396958642376-p3gtih945qac9qkngo2sc0tt2f635d50.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "mnf.mail.future",
+            "certificate_hash": "b1ec989ec7cc1adaa97a55c3f1abcb77dce26ebe"
+          }
+        },
+        {
+          "client_id": "396958642376-j1df9pc8ad41hglchhh8q12i749uds6o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQaR5w3QJMdPyElxHD3ISQKfk1pUsx72g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396958642376-j1df9pc8ad41hglchhh8q12i749uds6o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
