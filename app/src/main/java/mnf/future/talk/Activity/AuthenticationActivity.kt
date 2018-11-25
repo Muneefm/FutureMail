@@ -7,22 +7,32 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import mnf.future.talk.R
 
 import kotlinx.android.synthetic.main.activity_authentication.*
 import kotlinx.android.synthetic.main.content_authentication.*
+import mnf.future.talk.MainActivity
 import mnf.future.talk.Tools.Misc
 
 class AuthenticationActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
-    var TAG = "Auth"
+    var TAG = "Future_act"
     // This key determines weather the action button calls sign in method or sign up method.
     // true: sign in Profile
     // false: sign up profile
     var authState = false;
 
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        routeManager(currentUser)
 
+        // updateUI(currentUser)
+        Log.d(TAG, "user is "+currentUser)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +68,9 @@ class AuthenticationActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
-                        //updateUI(user)
+                        routeManager(user)
+
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -79,6 +91,8 @@ class AuthenticationActivity : AppCompatActivity() {
                         Log.d(TAG, "signInWithEmail:success")
                         val user = auth.currentUser
                         // updateUI(user)
+
+                        routeManager(user)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.e(TAG, "signInWithEmail:failure", task.exception)
@@ -89,6 +103,21 @@ class AuthenticationActivity : AppCompatActivity() {
 
                     // ...
                 }
+    }
+    fun routeManager(user : FirebaseUser?){
+        if(user != null) {
+            user.reload()
+
+            if (user.isEmailVerified) {
+                Log.d(TAG, "User email is verified")
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                // Email is not verified
+                user.sendEmailVerification()
+                startActivity(Intent(this, EmailVerificationActivity::class.java))
+                Log.d(TAG, "Email Verifications send request")
+            }
+        }
     }
 
     // Switch all text to sign up profile.
@@ -108,11 +137,5 @@ class AuthenticationActivity : AppCompatActivity() {
             signin_btn.text = "Sign In"
         }
     }
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-       // updateUI(currentUser)
-        Log.d(TAG, "user is "+currentUser)
-    }
+
 }

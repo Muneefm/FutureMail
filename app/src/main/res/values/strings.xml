@@ -4,4 +4,6 @@
     <string name="title_activity_authentication">AuthenticationActivity</string>
     <string name="title_activity_new_message">NewMessage</string>
     <string name="title_activity_message_list">MessageList</string>
+    <string name="title_activity_email_verification">EmailVerificationActivity</string>
+    <string name="login"><u>Login</u></string>
 </resources>
