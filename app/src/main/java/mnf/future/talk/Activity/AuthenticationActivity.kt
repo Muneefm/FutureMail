@@ -18,7 +18,7 @@ import mnf.future.talk.Tools.Misc
 class AuthenticationActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
-    var TAG = "Future_act"
+    var TAG = "future_login"
     // This key determines weather the action button calls sign in method or sign up method.
     // true: sign in Profile
     // false: sign up profile
@@ -61,7 +61,7 @@ class AuthenticationActivity : AppCompatActivity() {
 
     }
     fun createAccount() {
-        Log.d(TAG,"createAccount called");
+        Log.d(TAG,"createAccount called")
         auth.createUserWithEmailAndPassword(usernameEdt.text.toString(), passwordEdt.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -69,8 +69,6 @@ class AuthenticationActivity : AppCompatActivity() {
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
                         routeManager(user)
-
-
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)

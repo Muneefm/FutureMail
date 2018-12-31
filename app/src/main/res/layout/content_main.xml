@@ -16,7 +16,15 @@
         android:layout_height="178dp"
         android:alpha=".3"
         android:src="@drawable/pattern" />
-
+<ImageView
+    android:id="@+id/logoutBtn"
+    android:layout_width="35dp"
+    android:layout_height="35dp"
+    android:layout_alignParentRight="true"
+    android:layout_margin="20dp"
+    android:elevation="5dp"
+    android:src="@drawable/logout"
+    />
     <ImageView
         android:id="@+id/profile_pic"
         android:layout_width="170dp"

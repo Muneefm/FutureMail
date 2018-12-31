@@ -14,13 +14,28 @@ import mnf.future.talk.R
 import mnf.future.talk.Tools.Misc
 
 class EmailVerificationActivity : AppCompatActivity() {
-    var TAG = "future_email"
+    var TAG = "future_login"
     private lateinit var auth: FirebaseAuth
 
-    override fun onStart() {
+
+    public override fun onStart() {
         super.onStart()
-        // val currentUser = auth.currentUser
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+
+        if(currentUser !=null ){
+            Log.d(TAG, "current user is not null")
+            if (currentUser.isEmailVerified)  startActivity(Intent(this, MainActivity::class.java)) else Log.d(TAG, "user email is not verified ")
+        } else {
+            Log.d(TAG, " current user is  null ");
+        }
+        //routeManager(currentUser)
+
+        // updateUI(currentUser)
+        Log.d(TAG, "user is "+currentUser)
     }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_email_verification)

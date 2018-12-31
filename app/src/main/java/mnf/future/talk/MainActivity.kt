@@ -6,29 +6,68 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import mnf.future.talk.Activity.AuthenticationActivity
+import mnf.future.talk.Activity.EmailVerificationActivity
+import mnf.future.talk.Activity.NewMessage
 import mnf.future.talk.Tools.Misc
 
 class MainActivity : AppCompatActivity() {
+    var TAG = "future_home"
+
+    private lateinit var auth: FirebaseAuth
+
+    public override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart ")
+
+
+        //routeManager(currentUser)
+
+        // updateUI(currentUser)
+        // Log.d(TAG, "user is "+currentUser)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        auth = FirebaseAuth.getInstance()
+        Log.d(TAG, "onCreate ")
+        // Check if user is signed in (non-null) and update UI accordingly.
+        var currentUser = auth.currentUser
+
+        if(currentUser !=null ){
+            Log.d(TAG, "current user is not null ---- "+currentUser.displayName)
+            if (!currentUser.isEmailVerified)  startActivity(Intent(this, EmailVerificationActivity::class.java)) else Log.d(TAG, "user email is  verified ")
+            nameTv.text = currentUser.displayName
+            mailTv.text = currentUser.email
+        } else {
+            Log.d(TAG, " current user is  null ")
+            startActivity(Intent(this, AuthenticationActivity::class.java))
+        }
 
         nameTv.typeface = Misc.getFont(this.applicationContext, R.font.bai)
         mailTv.typeface = Misc.getFont(this.applicationContext, R.font.ss)
+
         fab.setOnClickListener { view ->
 
-                val login = Intent(this, AuthenticationActivity::class.java)
-                startActivity(login)
-
+               // val login = Intent(this, AuthenticationActivity::class.java)
+               //  startActivity(login)
+            startActivity(Intent(this, NewMessage::class.java))
         }
-
+        logoutBtn.setOnClickListener{ view ->
+            Log.d(TAG, "logout button pressed")
+            FirebaseAuth.getInstance().signOut()
+            startActivity(Intent(this, AuthenticationActivity::class.java))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
