@@ -64,7 +64,6 @@ class NewMessage : AppCompatActivity() {
         messageTv.typeface = maven_black
         edtMessage.typeface = roboto
         edtTitle.typeface = roboto
-
         dateTv.typeface = maven_black
         edtDate.typeface = roboto
 
