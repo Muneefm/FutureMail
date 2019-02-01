@@ -1,29 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
         android:orientation="horizontal"
-        android:layout_height="match_parent">
+        android:layout_height="100dp">
     <com.github.vipulasri.timelineview.TimelineView
         android:id="@+id/timeline"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:markerSize="20dp"
         app:lineWidth="3dp"
-        app:startLineColor="@color/colorAccent"
-        app:endLineColor="@color/colorAccent"
-        app:lineStyle="dash"/>
+        app:startLineColor="@color/colorPrimary"
+        app:endLineColor="@color/colorPrimary"
+        app:lineStyle="normal"/>
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/addNewCard"
+            android:layout_gravity="center"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:elevation="0dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/border"
+            android:textColor="@android:color/white"
+            android:text="10"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            card_view:cardCornerRadius="4dp">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content">
                 <TextView
+                    android:id="@+id/date_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="This is test itetm"
+                    android:layout_height="wrap_content"
+                    android:text="21 - 3 - 2020"
+                />
+            <TextView
+                android:layout_below="@+id/date_tv"
+                android:textSize="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="This Is Title"
                 />
         </RelativeLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 </RelativeLayout>
