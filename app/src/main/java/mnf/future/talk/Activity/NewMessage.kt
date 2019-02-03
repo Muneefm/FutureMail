@@ -47,6 +47,9 @@ class NewMessage : AppCompatActivity() {
         val year = calender.get(Calendar.YEAR)
         val month = calender.get(Calendar.MONTH)
         val day = calender.get(Calendar.DAY_OF_MONTH)
+        var selectedDay = ""
+        var selectedMonth =  ""
+        var selectedYear = ""
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -78,8 +81,14 @@ class NewMessage : AppCompatActivity() {
         edtDate.setOnClickListener{ view ->
             val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, mYear , mMonth, mDay ->
                 Log.v(TAG, "Selected days are = "+mYear+mMonth+mDay)
-                edtDate.setText("Date - "+mDay+"/"+mMonth+"/"+mYear)
+                edtDate.setText(""+mDay+"/"+mMonth+"/"+mYear)
                 date = ""+mDay + "-"+mMonth+"-"+mYear
+                selectedDay = "" + mDay
+                selectedMonth = "" + mMonth
+                selectedYear = "" + mYear
+
+
+
             }, year, month, day)
             datePicker.show()
         }
@@ -92,6 +101,10 @@ class NewMessage : AppCompatActivity() {
                 message["title"] = edtTitle.text.toString()
                 message["date"] = edtDate.text.toString()
                 message["message"] = edtMessage.text.toString()
+                message["day"] = selectedDay
+                message["month"] = selectedMonth
+                message["year"] = selectedYear
+
 
 
                 db.collection("users").document(currentUser!!.uid).collection("messages").document(date)
