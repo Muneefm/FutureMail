@@ -17,6 +17,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.content_main.*
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -81,10 +82,11 @@ class NewMessage : AppCompatActivity() {
         edtDate.setOnClickListener{ view ->
             val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, mYear , mMonth, mDay ->
                 Log.v(TAG, "Selected days are = "+mYear+mMonth+mDay)
-                edtDate.setText(""+mDay+"/"+mMonth+"/"+mYear)
-                date = ""+mDay + "-"+mMonth+"-"+mYear
+                edtDate.setText(""+mDay+"/"+(mMonth+1)+"/"+mYear)
+                date = ""+mDay + "-"+(mMonth+1)+"-"+mYear
+
                 selectedDay = "" + mDay
-                selectedMonth = "" + mMonth
+                selectedMonth = "" + (mMonth + 1)
                 selectedYear = "" + mYear
 
 
@@ -93,8 +95,12 @@ class NewMessage : AppCompatActivity() {
             datePicker.show()
         }
 
+
         btnSend.setOnClickListener{view ->
 
+            val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+            val dateObj = dateFormat.parse(date)
+            Log.v(TAG,"dateOBJ got is "+dateObj);
             if(edtTitle.text != null && edtDate.text != null && edtMessage.text != null) {
                 // if every field has values save them to collection
                 val message = HashMap<String, Any>()
@@ -104,6 +110,7 @@ class NewMessage : AppCompatActivity() {
                 message["day"] = selectedDay
                 message["month"] = selectedMonth
                 message["year"] = selectedYear
+                message["date_timestamp"] = dateObj
 
 
 

@@ -9,21 +9,30 @@ import kotlinx.android.synthetic.main.message_item.view.*
 import mnf.future.talk.Models.Message
 import mnf.future.talk.R
 
-class MessageAdapter(val mDataset: List<Message>): RecyclerView.Adapter<MessageAdapter.ViewHolder>(){
+class MessageAdapter(var mDataset: ArrayList<Message>): RecyclerView.Adapter<MessageAdapter.ViewHolder>(){
 
     val TAG = "MessageAdapterLog"
 
     inner class ViewHolder(itemView: View, viewType: Int) : RecyclerView.ViewHolder(itemView) {
 
        val timeline = itemView.timeline
+        val msgDateTv = itemView.date_tv
+        val msgTitleTv = itemView.message_title
 
         init {
           timeline.initLine(viewType)
         }
     }
+    fun updateDataset(  mData: ArrayList<Message>) {
+        this.mDataset = mData
+        notifyDataSetChanged()
+    }
 
-    override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
-        Log.v(TAG,"onBingViewHolder --- "+mDataset[p1])
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+        Log.v(TAG,"onBingViewHolder --- "+mDataset[position].title)
+        viewHolder.msgDateTv.text = mDataset[position].date
+        viewHolder.msgTitleTv.text = mDataset[position].title
+
     }
 
     override fun getItemCount(): Int {
