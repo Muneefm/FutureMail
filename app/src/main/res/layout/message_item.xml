@@ -12,8 +12,10 @@
         android:id="@+id/timeline"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        app:marker="@drawable/timeline_marker"
         app:markerSize="20dp"
-        app:lineWidth="3dp"
+        app:lineWidth="4dp"
+        app:linePadding="5dp"
         app:startLineColor="@color/blue500"
         app:endLineColor="@color/blue500"
         app:lineStyle="normal"/>
@@ -44,14 +46,14 @@
                     android:id="@+id/date_tv"
                     android:textStyle="bold"
                     android:layout_width="match_parent"
-                    android:textColor="@color/purple500"
+                    android:textColor="@color/purpleA700"
                     android:layout_height="wrap_content"
                     android:text="21 - 3 - 2020"
                 />
             <TextView
                 android:id="@+id/message_title"
                 android:layout_below="@+id/date_tv"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
