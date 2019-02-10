@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@android:color/white"
+    android:fitsSystemWindows="true"
+
     android:layout_height="match_parent">
 <RelativeLayout
     android:layout_width="match_parent"
@@ -103,6 +105,68 @@
                 android:text="Send To Future"
                 android:textColor="@android:color/white" />
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="40dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/msg_btn"
+                android:elevation="20dp"
+                android:paddingVertical="10dp"
+                android:backgroundTint="@color/indigo900"
+                android:gravity="center"
+                android:text="Send To Future"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="40dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/msg_btn"
+                android:elevation="20dp"
+                android:paddingVertical="10dp"
+                android:backgroundTint="@color/indigo900"
+                android:gravity="center"
+                android:text="Send To Future"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="40dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/msg_btn"
+                android:elevation="20dp"
+                android:paddingVertical="10dp"
+                android:backgroundTint="@color/indigo900"
+                android:gravity="center"
+                android:text="Send To Future"
+                android:textColor="@android:color/white" />
+        </RelativeLayout>
+
+
 
     </LinearLayout>
 </RelativeLayout>
