@@ -8,17 +8,21 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import mnf.future.talk.R
 
 import kotlinx.android.synthetic.main.activity_authentication.*
 import kotlinx.android.synthetic.main.content_authentication.*
+import mnf.future.talk.ApplicationClass
+import mnf.future.talk.HelperClasses.AuthHelper
 import mnf.future.talk.MainActivity
 import mnf.future.talk.Tools.Misc
 
 class AuthenticationActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
+    // private lateinit var auth: FirebaseAuth
 
     var TAG = "future_login"
     // This key determines weather the action button calls sign in method or sign up method.
@@ -28,12 +32,7 @@ class AuthenticationActivity : AppCompatActivity() {
 
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        routeManager(currentUser)
 
-        // updateUI(currentUser)
-        Log.d(TAG, "user is "+currentUser)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +42,7 @@ class AuthenticationActivity : AppCompatActivity() {
             val w = window // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
-        auth = FirebaseAuth.getInstance()
+        // auth = FirebaseAuth.getInstance()
 
         var roboto_bold = Misc.getFont(this.applicationContext, R.font.roboto_bold)
         var roboto = Misc.getFont(this.applicationContext, R.font.roboto)
@@ -54,9 +53,25 @@ class AuthenticationActivity : AppCompatActivity() {
         signup_pre.typeface = roboto
         signup_tv.typeface = roboto_bold
 
+        val authCallback = OnCompleteListener<AuthResult> {task ->
+            Log.d(TAG,"Auth callback called ")
+            if(task.isSuccessful){
+                Log.d(TAG,"authentication success from callback")
+                routeManager()
+            } else {
+                Log.e(TAG,"authentication error from callback"+task.exception)
+
+            }
+
+        }
+
         signin_btn.setOnClickListener{ view ->
             Log.d(TAG, " button pressed "+usernameEdt.text+passwordEdt.text)
-            if (authState) signIn() else createAccount()
+            // if (authState) signIn() else createAccount()
+            if(authState)
+                AuthHelper().signInUser(usernameEdt.text.toString(), passwordEdt.text.toString(), authCallback)
+            else
+                AuthHelper().createUserAccount(usernameEdt.text.toString(), passwordEdt.text.toString(), authCallback)
 
         }
         signup_tv.setOnClickListener{ view ->
@@ -66,7 +81,7 @@ class AuthenticationActivity : AppCompatActivity() {
         }
 
     }
-    fun createAccount() {
+    /*fun createAccount() {
         Log.d(TAG,"createAccount called")
         auth.createUserWithEmailAndPassword(usernameEdt.text.toString(), passwordEdt.text.toString())
                 .addOnCompleteListener(this) { task ->
@@ -74,7 +89,7 @@ class AuthenticationActivity : AppCompatActivity() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
-                        routeManager(user)
+                       // routeManager(user)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
@@ -85,8 +100,8 @@ class AuthenticationActivity : AppCompatActivity() {
 
                     // ...
                 }
-    }
-    fun signIn(){
+    }*/
+   /* fun signIn(){
         Log.d(TAG,"signIn called");
         auth.signInWithEmailAndPassword(usernameEdt.text.toString(), passwordEdt.text.toString())
                 .addOnCompleteListener(this) { task ->
@@ -107,8 +122,9 @@ class AuthenticationActivity : AppCompatActivity() {
 
                     // ...
                 }
-    }
-    fun routeManager(user : FirebaseUser?){
+    }*/
+    fun routeManager(){
+        val user = ApplicationClass.auth.currentUser
         if(user != null) {
             user.reload()
 
@@ -121,6 +137,8 @@ class AuthenticationActivity : AppCompatActivity() {
                 startActivity(Intent(this, EmailVerificationActivity::class.java))
                 Log.d(TAG, "Email Verifications send request")
             }
+        } else {
+            Log.d(TAG, "routeManager user returned null")
         }
     }
 

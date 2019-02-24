@@ -9,19 +9,21 @@ import com.google.firebase.auth.FirebaseAuth
 
 import kotlinx.android.synthetic.main.activity_email_verification.*
 import kotlinx.android.synthetic.main.content_email_verification.*
+import mnf.future.talk.ApplicationClass
 import mnf.future.talk.MainActivity
 import mnf.future.talk.R
 import mnf.future.talk.Tools.Misc
 
 class EmailVerificationActivity : AppCompatActivity() {
     var TAG = "future_login"
-    private lateinit var auth: FirebaseAuth
-
+    val auth = ApplicationClass.auth
+    val currentUser = auth.currentUser
 
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
+        // val currentUser = auth.currentUser
+
 
         if(currentUser !=null ){
             Log.d(TAG, "current user is not null")
@@ -39,7 +41,7 @@ class EmailVerificationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_email_verification)
-        auth = FirebaseAuth.getInstance()
+        // auth = FirebaseAuth.getInstance()
 
         var maven_black = Misc.getFont(this.applicationContext, R.font.maven_black)
         var maven_medium = Misc.getFont(this.applicationContext, R.font.maven_medium)
@@ -57,7 +59,7 @@ class EmailVerificationActivity : AppCompatActivity() {
         btn_email.setOnClickListener{view ->
 
             Log.d(TAG, "btn_email pressed")
-            val currentUser = auth.currentUser
+           // val currentUser = auth.currentUser
             if(currentUser !=null) {
                 Log.d(TAG,"btm_email press, Email sending")
 

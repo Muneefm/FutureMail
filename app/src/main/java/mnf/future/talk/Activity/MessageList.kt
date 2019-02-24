@@ -14,6 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 import kotlinx.android.synthetic.main.activity_message_list.*
 import mnf.future.talk.Adapters.MessageAdapter
+import mnf.future.talk.ApplicationClass
 import mnf.future.talk.Models.Message
 import mnf.future.talk.R
 import mnf.future.talk.Tools.Misc
@@ -37,7 +38,7 @@ class MessageList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message_list)
         setSupportActionBar(toolbar)
-        auth = FirebaseAuth.getInstance()
+        auth = ApplicationClass.auth
         var currentUser = auth.currentUser
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val w = window // in Activity's onCreate() for instance

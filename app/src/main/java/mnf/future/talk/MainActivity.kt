@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             val w = window // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         }
-        auth = FirebaseAuth.getInstance()
+        auth = ApplicationClass.auth
         Log.d(TAG, "onCreate ")
         // Check if user is signed in (non-null) and update UI accordingly.
         var currentUser = auth.currentUser

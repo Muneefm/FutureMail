@@ -18,6 +18,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.content_main.*
+import mnf.future.talk.ApplicationClass
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
@@ -34,7 +35,7 @@ class NewMessage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_message)
 
-        auth = FirebaseAuth.getInstance()
+        auth = ApplicationClass.auth
         var currentUser = auth.currentUser
 
         if(currentUser !=null ){
