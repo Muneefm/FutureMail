@@ -17,6 +17,7 @@ import android.os.Build
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.android.synthetic.main.content_main.*
 import mnf.future.talk.ApplicationClass
 import java.text.SimpleDateFormat
@@ -123,6 +124,7 @@ class NewMessage : AppCompatActivity() {
             if(edtTitle.text != null && edtDate.text != null && edtMessage.text != null) {
                 // if every field has values save them to collection
                 val message = HashMap<String, Any>()
+                message["userid"] = currentUser!!.uid
                 message["title"] = edtTitle.text.toString()
                 message["date"] = edtDate.text.toString()
                 message["message"] = edtMessage.text.toString()
@@ -131,7 +133,28 @@ class NewMessage : AppCompatActivity() {
                 message["year"] = selectedYear
                 message["date_timestamp"] = dateObj
 
+                val RootMessage = HashMap<String, HashMap<String, Any>>()
+                RootMessage[date+"$"+UUID.randomUUID().toString()] = message
 
+                val messageRoot = HashMap<String, HashMap<String, Any>>()
+                messageRoot["messages"] = message
+                // This data need to be written in order to skip the italic collection id issue
+                val userData = HashMap<String, String?>()
+                userData["userid"] = currentUser!!.uid
+                userData["name"] = currentUser!!.displayName
+                db.collection("messages").document().set(message)
+
+                /**
+                 * mapOf(
+                "title" to edtTitle.text.toString(),
+                "date" to edtDate.text.toString(),
+                "message" to edtMessage.text.toString(),
+                "day" to selectedDay,
+                "month" to selectedMonth,
+                "year" to selectedYear,
+                "date_timestamp" to dateObj
+                ), SetOptions.merge()
+                 */
 
                 db.collection("users").document(currentUser!!.uid).collection("messages").document(date)
                         .set(message)

@@ -52,6 +52,7 @@ class AuthenticationActivity : AppCompatActivity() {
         or_tv.typeface = roboto_bold
         signup_pre.typeface = roboto
         signup_tv.typeface = roboto_bold
+        var auth = FirebaseAuth.getInstance()
 
         val authCallback = OnCompleteListener<AuthResult> {task ->
             Log.d(TAG,"Auth callback called ")
@@ -68,10 +69,19 @@ class AuthenticationActivity : AppCompatActivity() {
         signin_btn.setOnClickListener{ view ->
             Log.d(TAG, " button pressed "+usernameEdt.text+passwordEdt.text)
             // if (authState) signIn() else createAccount()
-            if(authState)
+            if(authState) {
+                Log.d(TAG, " authState true " + usernameEdt.text + passwordEdt.text)
+
                 AuthHelper().signInUser(usernameEdt.text.toString(), passwordEdt.text.toString(), authCallback)
-            else
+            }
+            else {
+                Log.d(TAG, " authState false " + usernameEdt.text + passwordEdt.text)
+
+//                auth.signInWithEmailAndPassword(usernameEdt.text.toString(), passwordEdt.text.toString())
+//                        .addOnCompleteListener(authCallback)
                 AuthHelper().createUserAccount(usernameEdt.text.toString(), passwordEdt.text.toString(), authCallback)
+            }
+               // AuthHelper().createUserAccount(usernameEdt.text.toString(), passwordEdt.text.toString(), authCallback)
 
         }
         signup_tv.setOnClickListener{ view ->

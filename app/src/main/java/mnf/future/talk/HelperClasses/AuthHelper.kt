@@ -30,7 +30,7 @@ class AuthHelper {
     }
 
     fun signInUser(username: String, password: String, callback: OnCompleteListener<AuthResult>) {
-        Log.d(TAG,"signIn called");
+        Log.d(TAG,"signIn called "+callback)
         auth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(callback)
     }
