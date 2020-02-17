@@ -53,7 +53,7 @@ class MessageList : AppCompatActivity() {
         title_timeline.typeface = ss
 
         if(currentUser !=null ){
-            Log.d(TAG, "current user is not null ---- "+currentUser.displayName)
+            Log.d(TAG, "current user is not null ---- "+currentUser.uid)
             if (!currentUser.isEmailVerified)  startActivity(Intent(this, EmailVerificationActivity::class.java)) else Log.d(TAG, "user email is  verified ")
         } else {
             Log.d(TAG, " current user is  null ")
@@ -79,7 +79,20 @@ class MessageList : AppCompatActivity() {
             // specify an viewAdapter (see also next example)
             adapter = viewAdapter
         }
-        val docRef = db.collection("users").document(currentUser!!.uid).collection("messages")
+
+        db.collection("messages")
+                .whereEqualTo("userid", currentUser!!.uid)
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        Log.d(TAG, "${document.id} => ${document.data}")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.w(TAG, "Error getting documents: ", exception)
+                }
+
+        val docRef = db.collection("messages").whereEqualTo("userid", currentUser!!.uid)
         docRef.orderBy("date_timestamp").get()
                 .addOnSuccessListener { collection ->
                     if (collection != null) {

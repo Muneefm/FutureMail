@@ -125,6 +125,7 @@ class NewMessage : AppCompatActivity() {
                 // if every field has values save them to collection
                 val message = HashMap<String, Any>()
                 message["userid"] = currentUser!!.uid
+                message["email"] = currentUser.email!!
                 message["title"] = edtTitle.text.toString()
                 message["date"] = edtDate.text.toString()
                 message["message"] = edtMessage.text.toString()
@@ -132,17 +133,26 @@ class NewMessage : AppCompatActivity() {
                 message["month"] = selectedMonth
                 message["year"] = selectedYear
                 message["date_timestamp"] = dateObj
+                message["is_send"] = "0"
 
-                val RootMessage = HashMap<String, HashMap<String, Any>>()
-                RootMessage[date+"$"+UUID.randomUUID().toString()] = message
+//
+//                val RootMessage = HashMap<String, HashMap<String, Any>>()
+//                RootMessage[date+"$"+UUID.randomUUID().toString()] = message
+//
+//                val messageRoot = HashMap<String, HashMap<String, Any>>()
+//                messageRoot["messages"] = message
+//                // This data need to be written in order to skip the italic collection id issue
+//                val userData = HashMap<String, String?>()
+//                userData["userid"] = currentUser!!.uid
+//                userData["name"] = currentUser!!.displayName
 
-                val messageRoot = HashMap<String, HashMap<String, Any>>()
-                messageRoot["messages"] = message
-                // This data need to be written in order to skip the italic collection id issue
-                val userData = HashMap<String, String?>()
-                userData["userid"] = currentUser!!.uid
-                userData["name"] = currentUser!!.displayName
-                db.collection("messages").document().set(message)
+
+                db.collection("messages").document()
+                        .set(message)
+                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                        .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
+                db.collection("users").document().set(message)
 
                 /**
                  * mapOf(
@@ -156,10 +166,10 @@ class NewMessage : AppCompatActivity() {
                 ), SetOptions.merge()
                  */
 
-                db.collection("users").document(currentUser!!.uid).collection("messages").document(date)
-                        .set(message)
-                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
-                        .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+//                db.collection("users").document(currentUser!!.uid).collection("messages").document(date)
+//                        .set(message)
+//                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+//                        .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
             }
         }
