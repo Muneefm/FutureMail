@@ -6,6 +6,7 @@
     <color name="grey65">#e6e6e6</color>
     <color name="grey300">#E0E0E0</color>
     <color name="grey400">#BDBDBD</color>
+    <color name="red">#ff0000</color>
 
     <color name="purple900">#4A148C</color>
     <color name="purpleA700">#AA00FF</color>
